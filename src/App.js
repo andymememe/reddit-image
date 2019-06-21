@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Articles from './Article';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [subreddit, setSubreddit] = useState(
+        'funny'
+    );
+    const [parameter, setParameter] = useState(
+        'funny'
+    );
+
+    const handleChange = event => setSubreddit(event.target.value);
+    const submitChange = _ => setParameter(subreddit);
+    
+    return (
+        <div className="App">
+            <h1>Reddit Image</h1>
+            <input type="text" value={subreddit} onChange={handleChange}/>
+            <button id='go' onClick={submitChange}>Go!</button>
+            <Articles subreddit={parameter}/>
+        </div>
+    );
 }
 
 export default App;
